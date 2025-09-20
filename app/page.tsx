@@ -1,103 +1,183 @@
-import Image from "next/image";
+import ProjectCard from "@/components/ProjectCard";
+import { getProjectsByCategory } from "@/lib/projects";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const work = getProjectsByCategory("work");
+  const research = getProjectsByCategory("research");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  return (
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
+      <div className="max-w-5xl mx-auto px-6 py-24 space-y-28">
+        {/* Hero */}
+        <header className="space-y-8">
+          <div>
+            <div className="flex items-baseline gap-4">
+              <h1 className="text-6xl font-extrabold tracking-tight">Sefren</h1>
+              <span className="text-xs uppercase tracking-widest font-mono text-[var(--accent)]">
+                SEH-fren
+              </span>
+            </div>
+            <div className="section-marker mt-3">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <p className="max-w-2xl text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              A collection of projects, research, and dossiers.{" "}
+              <br className="hidden sm:block" />
+              Things that just wouldn't leave me alone.
+            </p>
+
+            <div className="flex items-center gap-4 text-xs font-mono text-neutral-500">
+              <span className="uppercase tracking-wider">Status: Active</span>
+              <span className="w-1 h-1 rounded-full bg-neutral-400"></span>
+              <span className="uppercase tracking-wider">
+                Last Updated:{" "}
+                {new Date().toLocaleDateString("en-US", {
+                  month: "short",
+                  year: "numeric",
+                })}
+              </span>
+            </div>
+          </div>
+
+          <nav className="flex gap-8 text-xs sm:text-sm uppercase tracking-widest text-neutral-500 pb-2 border-b border-neutral-200 dark:border-neutral-800">
+            <a
+              href="#work"
+              className="accent-underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              Work
+            </a>
+            <a
+              href="#research"
+              className="accent-underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              Research
+            </a>
+            <a
+              href="#about"
+              className="accent-underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="#contact"
+              className="accent-underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
+        </header>
+
+        {/* Work */}
+        <section id="work" className="space-y-12">
+          <div>
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-xl sm:text-2xl font-semibold uppercase tracking-wide">
+                Selected Dossiers
+              </h2>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">
+                {work.length} entries
+              </span>
+            </div>
+            <div className="section-marker">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div className="space-y-20">
+            {work.map((p, i) => (
+              <article key={p.slug} className="group/dossier">
+                <ProjectCard
+                  title={p.title}
+                  subtitle={p.subtitle}
+                  description={p.shortDescription}
+                  tech={p.tech}
+                  projectSlug={p.slug}
+                  githubUrl={p.github}
+                />
+                {i < work.length - 1 && (
+                  <div className="mt-14 text-center font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]/60 opacity-40">
+                    — — —
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Research */}
+        <section id="research" className="space-y-12">
+          <div>
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-xl sm:text-2xl font-semibold uppercase tracking-wide">
+                Research
+              </h2>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">
+                {research.length} entries
+              </span>
+            </div>
+            <div className="section-marker">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div className="space-y-20">
+            {research.map((p, i) => (
+              <article key={p.slug} className="group/paper">
+                <ProjectCard
+                  title={p.title}
+                  subtitle={p.subtitle}
+                  description={p.shortDescription}
+                  tech={p.tech}
+                  projectSlug={p.slug}
+                  githubUrl={p.github}
+                />
+                {i < research.length - 1 && (
+                  <div className="mt-14 text-center font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]/60 opacity-40">
+                    — — —
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* About */}
+        <section id="about" className="space-y-8">
+          <div>
+            <h2 className="text-lg sm:text-xl font-semibold uppercase tracking-wide">
+              About
+            </h2>
+            <div className="section-marker">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div className="space-y-6">
+            <p className="max-w-2xl text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed">
+              I work at the intersection of code, systems, and design. Most of
+              my projects explore how abstract models — engines, algorithms, or
+              decisions — can be shaped into tangible tools.
+            </p>
+            <p className="max-w-2xl text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed opacity-80">
+              The throughline isn't polish; it's curiosity.
+            </p>
+            <div className="pt-4 text-xs font-mono text-neutral-500">
+              <div>
+                Interests: Physics simulation, architecture, decision theory,
+                systematic exploration
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer merged */}
+        <Footer />
+      </div>
+    </main>
   );
 }
