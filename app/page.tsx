@@ -101,6 +101,7 @@ export default function Home() {
                         tech={p.tech}
                         projectSlug={p.slug}
                         githubUrl={p.github}
+                        externalUrl={p.externalLink}
                     />
                     {i < work.length - 1 && (
                         <div className="mt-14 text-center font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]/60 opacity-40">
@@ -138,6 +139,7 @@ export default function Home() {
                         tech={p.tech}
                         projectSlug={p.slug}
                         githubUrl={p.github}
+                        externalUrl={p.externalLink}
                     />
                     {i < research.length - 1 && (
                         <div className="mt-14 text-center font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]/60 opacity-40">

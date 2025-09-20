@@ -9,6 +9,7 @@ export interface Project {
   stack: string[]
   status: string
   github?: string
+  externalLink?: string
   limitations?: string
   category: 'work' | 'research'
   shortDescription: string
@@ -78,18 +79,17 @@ export const projects: Project[] = [
     slug: 'iflr-rancom-mabac',
     title: 'IFLR-RANCOM & MABAC Framework',
     displayName: 'HYDROGEN DECISION MODEL',
-    subtitle: 'Assessment of Sustainable Hydrogen Supply Alternatives',
+    subtitle: 'Assessment of sustainable hydrogen supply alternatives',
     description:
-        'Reference implementation of the framework presented in the article “Assessment of sustainable hydrogen supply alternatives utilizing intuitionistic fuzzy linguistic rough information oriented RANCOM & MABAC model,” published in the International Journal of Hydrogen Energy. The system integrates intuitionistic fuzzy linguistic rough sets (IFLRS), Sugeno–Weber aggregation operators, an extended RANCOM weighting approach, and the MABAC method to evaluate hydrogen supply options under uncertainty. It was applied to a case study comparing green, blue, grey, electrolysis-based, and ammonia hydrogen supply pathways.',
+        'Reference implementation of a fuzzy-linguistic decision framework for evaluating and ranking hydrogen supply pathways under uncertainty. Implements advanced fuzzy-set aggregation and multi-criteria ranking methods and was applied to a comparative case study of several hydrogen production options.',
     shortDescription:
-        'Reference implementation of the IFLRS-based RANCOM & MABAC decision framework for ranking hydrogen supply alternatives in the clean energy transition.',
+        'Reference implementation of a fuzzy-linguistic decision framework for ranking hydrogen supply alternatives.',
     features: [
-      'Implements intuitionistic fuzzy linguistic rough sets (IFLRS) to handle vagueness, hesitation, and boundary uncertainty',
-      'Introduces Sugeno–Weber t-norm and t-conorm aggregation operators for nonlinear attribute interactions',
-      'Extends IFLR-RANCOM to derive reliable criteria weights from linguistic expert judgments',
-      'Combines RANCOM with the MABAC model for final ranking of hydrogen supply options',
-      'Validated on a real-world case study of green, blue, grey, electrolysis-based, and ammonia hydrogen',
-      'Includes sensitivity and comparative analysis demonstrating stability and robustness of rankings',
+      'Handles vague/hesitant expert judgments using intuitionistic fuzzy linguistic rough sets',
+      'Nonlinear aggregation via Sugeno–Weber operators',
+      'Robust criteria weighting with an extended RANCOM approach',
+      'Final ranking produced by combining RANCOM weights with MABAC',
+      'Applied to a case study comparing multiple hydrogen pathways (demonstration/validation)',
     ],
     modules: [
       'IFLRS Engine',
@@ -100,19 +100,13 @@ export const projects: Project[] = [
     ],
     stack: ['Python', 'NumPy', 'Pandas', 'Matplotlib', 'Jupyter'],
     tech: 'Decision Models · Research Implementation',
-    status: 'Research Implementation',
-    github: 'https://github.com/sefren/iflr-rancom-mabac', // update once repo renamed
+    status: 'Research Prototype',
     category: 'research',
     role: 'Co-author — implemented computational model, aggregation operators, and analysis tooling',
     eli5:
-        'A decision system that takes fuzzy expert opinions like “this option is kind of clean but costly” and turns them into ranked scores. In the case study, green hydrogen ranked highest, grey lowest.',
-    limitations:
-        'Research implementation — developed for academic validation and reproducibility, not intended for production deployment. Outputs are command-line results and plots, no full application interface.',
-  }
-
-
+        'A system that turns fuzzy expert opinions (like "this option is kind of clean but costly") into ranked scores to compare hydrogen options.',
+  },
 ]
-
 
 const projectsCache = new Map()
 

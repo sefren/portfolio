@@ -43,7 +43,8 @@ export default function ProjectPage({ params }: Props) {
   const statusColor =
       project.status === "In Active Development"
           ? "text-green-600 dark:text-green-400"
-          : project.status === "Research Implementation"
+          : project.status === "Research Implementation" ||
+          project.status === "Research Prototype"
               ? "text-blue-600 dark:text-blue-400"
               : "text-yellow-600 dark:text-yellow-400";
 
@@ -98,7 +99,7 @@ export default function ProjectPage({ params }: Props) {
                 </div>
             )}
 
-            {/* Status + Role + GitHub */}
+            {/* Status + Role + Links */}
             <div className="flex flex-wrap gap-6 text-sm text-neutral-500 items-center pt-2 border-t border-dotted border-neutral-300 dark:border-neutral-700">
               <div className="flex items-center gap-2">
                 <Clock size={12} />
@@ -122,6 +123,21 @@ export default function ProjectPage({ params }: Props) {
                   >
                     <GitBranch size={12} />
                     Source Code
+                    <ExternalLink
+                        size={12}
+                        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+                    />
+                  </a>
+              )}
+
+              {project.externalLink && (
+                  <a
+                      href={project.externalLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs uppercase tracking-widest hover:text-[var(--accent)] transition-colors group"
+                  >
+                    View
                     <ExternalLink
                         size={12}
                         className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
@@ -257,6 +273,16 @@ export default function ProjectPage({ params }: Props) {
                       className="uppercase tracking-widest hover:text-[var(--accent)] transition-colors"
                   >
                     View Repository
+                  </a>
+              )}
+              {project.externalLink && (
+                  <a
+                      href={project.externalLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="uppercase tracking-widest hover:text-[var(--accent)] transition-colors"
+                  >
+                    View
                   </a>
               )}
               <span className="font-mono opacity-60">
