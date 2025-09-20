@@ -64,7 +64,7 @@ export default function Footer({
                 href="mailto:manishsharma43005@proton.me"
                 className="accent-underline hover:opacity-80 transition-opacity"
               >
-                Email
+                EMAIL
               </a>
               <a
                 href="https://github.com/sefren"
@@ -72,7 +72,7 @@ export default function Footer({
                 rel="noreferrer"
                 className="accent-underline hover:opacity-80 transition-opacity"
               >
-                View Source
+                GITHUB
               </a>
               <a
                 href="https://x.com/manish43050"
