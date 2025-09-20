@@ -1,39 +1,51 @@
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
-import React from "react"
+import type { Metadata } from "next";
+import "./globals.css";
+import React from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
   display: "swap",
-})
+});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
   display: "swap",
-})
+  weight: ["400", "500"],
+});
 
 export const metadata: Metadata = {
   title: {
     default: "Sefren — Portfolio & Research",
-    template: "%s | Sefren"
+    template: "%s | Sefren",
   },
-  description: "A collection of projects, research, and dossiers. Things that just wouldn't leave me alone.",
-  keywords: ["portfolio", "software developer", "research", "projects", "systems", "algorithms"],
+  description:
+    "A collection of projects, research, and dossiers. Things that just wouldn't leave me alone.",
+  keywords: [
+    "portfolio",
+    "software developer",
+    "research",
+    "projects",
+    "systems",
+    "algorithms",
+  ],
   authors: [{ name: "Sefren" }],
   creator: "Sefren",
-  metadataBase: new URL(process.env.VERCEL_URL
+  metadataBase: new URL(
+    process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
+      : "http://localhost:3000",
   ),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Sefren — Portfolio & Research",
-    description: "A collection of projects, research, and dossiers. Things that just wouldn't leave me alone.",
+    description:
+      "A collection of projects, research, and dossiers. Things that just wouldn't leave me alone.",
     type: "website",
     locale: "en_US",
     url: "/",
@@ -50,7 +62,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sefren — Portfolio & Research",
-    description: "A collection of projects, research, and dossiers. Things that just wouldn't leave me alone.",
+    description:
+      "A collection of projects, research, and dossiers. Things that just wouldn't leave me alone.",
     creator: "@manish43050",
     images: ["/og-image.png"],
   },
@@ -65,15 +78,15 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-}
+};
 
 export default function RootLayout({
-                                     children,
-                                   }: {
-  children: React.ReactNode
+  children,
+}: {
+  children: React.ReactNode;
 }) {
   return (
-      <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -82,8 +95,8 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="antialiased bg-[var(--background)] text-[var(--foreground)]">
-      {children}
+        {children}
       </body>
-      </html>
-  )
+    </html>
+  );
 }
