@@ -1,142 +1,87 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "404 — Page Not Found",
-  description: "The requested resource does not exist in the current index.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Button from "@/components/Button";
+import { ArrowLeft, ExternalLink, GitBranch } from "lucide-react";
+import Rule from "@/components/Rule";
 
 export default function NotFound() {
+  const router = useRouter();
+
+  useEffect(() => {
+    document.title = "404 — Page Not Found | Sefren";
+  }, []);
+
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
-      <div className="max-w-4xl mx-auto px-6 py-24 space-y-28">
-        {/* Error Content */}
-        <div className="space-y-12">
-          <div className="group">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-[var(--accent)] uppercase tracking-wide transition-all duration-200 group-hover:-translate-x-1"
+      <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased flex flex-col">
+        <div className="flex-1 max-w-4xl mx-auto px-6 py-16 space-y-20">
+          {/* Back Navigation */}
+          <div>
+            <button
+                onClick={() => router.back()}
+                className="inline-flex items-center gap-2 text-base text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
             >
-              <ArrowLeft
-                size={14}
-                className="group-hover:-translate-x-0.5 transition-transform duration-200"
-              />
-              Back to Portfolio
-            </Link>
+              <ArrowLeft size={16} />
+              Back
+            </button>
           </div>
 
-          <header className="space-y-8">
-            <div>
-              <div className="flex items-baseline gap-4">
-                <h1 className="text-6xl font-extrabold tracking-tight font-mono text-red-600 dark:text-red-400">
-                  404
-                </h1>
-                <span className="text-xs uppercase tracking-widest font-mono text-[var(--accent)]">
-                  NOT FOUND
-                </span>
-              </div>
-              <div className="section-marker mt-3">
-                <div></div>
-                <div></div>
-              </div>
+          {/* Error Header */}
+          <header className="space-y-6">
+            <div className="flex items-baseline gap-4">
+              <h1 className="text-6xl sm:text-7xl font-extrabold tracking-tight font-mono text-red-600 dark:text-red-400">
+                404
+              </h1>
+              <span className="text-sm sm:text-base uppercase tracking-widest font-mono text-[var(--foreground)]">
+              NOT FOUND
+            </span>
             </div>
-
-            <div className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold">Page Not Found</h2>
-              <p className="max-w-2xl text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                The requested resource does not exist in the current index.
-                <br className="hidden sm:block" />
-                It may have been moved, archived, or never documented.
-              </p>
-            </div>
+            <p className="max-w-2xl text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The page you’re looking for doesn’t exist. It may have been moved,
+              archived, or never documented in the first place.
+            </p>
+            <p className="text-sm font-mono text-neutral-500 dark:text-neutral-400">
+              Error Code: HTTP 404 — at least it’s consistent.
+            </p>
           </header>
 
           {/* Navigation Options */}
           <section className="space-y-6">
             <div>
-              <h3 className="text-sm sm:text-base font-semibold uppercase tracking-wide">
-                Available Routes
+              <h3 className="text-base font-semibold uppercase tracking-wide">
+                Try One of These Instead
               </h3>
-              <div className="section-marker">
-                <div></div>
-                <div></div>
-              </div>
+              <Rule />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
-              <div className="space-y-3">
-                <h4 className="font-medium uppercase tracking-wide text-neutral-700 dark:text-neutral-300">
-                  Primary Navigation
-                </h4>
-                <ul className="space-y-2 text-neutral-600 dark:text-neutral-400">
-                  <li>
-                    <Link
-                      href="/"
-                      className="accent-underline hover:opacity-80 transition-opacity"
-                    >
-                      Portfolio Index
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/#work"
-                      className="accent-underline hover:opacity-80 transition-opacity"
-                    >
-                      Selected Dossiers
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/#research"
-                      className="accent-underline hover:opacity-80 transition-opacity"
-                    >
-                      Research Implementations
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/project"
-                      className="accent-underline hover:opacity-80 transition-opacity"
-                    >
-                      Complete Project Index
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-medium uppercase tracking-wide text-neutral-700 dark:text-neutral-300">
-                  System Information
-                </h4>
-                <ul className="space-y-2 text-neutral-600 dark:text-neutral-400 text-xs font-mono">
-                  <li>Error Code: HTTP 404</li>
-                  <li>Timestamp: {new Date().toISOString()}</li>
-                  <li>
-                    Path:{" "}
-                    {typeof window !== "undefined"
-                      ? window.location.pathname
-                      : "/unknown"}
-                  </li>
-                </ul>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
+              <Button href="/" className="text-base px-4 py-2 w-full sm:w-auto">
+                Home
+              </Button>
+              <Button href="/project" className="text-base px-4 py-2 w-full sm:w-auto">
+                All Projects
+              </Button>
+              <Button
+                  href="https://github.com/sefren"
+                  external
+                  className="inline-flex items-center gap-2 text-base px-4 py-2 w-full sm:w-auto"
+              >
+                View Repo
+                <ExternalLink size={14} />
+              </Button>
             </div>
+
           </section>
 
           {/* Error Note */}
-          <section className="pt-8 border-t border-neutral-200 dark:border-neutral-800">
-            <p className="text-xs text-neutral-500 max-w-2xl leading-relaxed">
-              If you believe this page should exist, check the URL for typos or
-              navigate using the links above. For persistent issues, reference
-              the GitHub repository or contact directly.
+          <section className="pt-8 border-t border-neutral-200 dark:border-neutral-800 text-sm sm:text-base text-neutral-500 leading-relaxed">
+            <p>
+              At least you found <em>something</em>. If you think this page should
+              exist, double-check the URL or head back to the index.
             </p>
           </section>
         </div>
-      </div>
-    </main>
+      </main>
   );
 }
