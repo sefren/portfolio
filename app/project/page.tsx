@@ -1,20 +1,20 @@
-import Link from "next/link";
+import Button from "@/components/Button";
 import { ArrowLeft, Clock } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
 import Footer from "@/components/Footer";
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Project Index",
   description:
-      "Complete catalog of development work and research implementations. Each entry represents something that demanded existence.",
+      "Complete catalog of development work and research implementations.",
   openGraph: {
     title: "Project Index | Sefren",
     description:
         "Complete catalog of development work and research implementations.",
   },
-}
+};
 
 export default function ProjectIndex() {
   const workProjects = projects.filter((p) => p.category === "work");
@@ -30,56 +30,45 @@ export default function ProjectIndex() {
 
   return (
       <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
-        <div className="max-w-4xl mx-auto px-6 py-20 space-y-20">
+        <div className="max-w-4xl mx-auto px-8 py-32 space-y-32">
           {/* Header */}
-          <header className="space-y-8">
-            <div className="group">
-              <Link
+          <header className="space-y-12">
+            <div>
+              <Button
                   href="/"
-                  className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-[var(--accent)] uppercase tracking-wide transition-all duration-200 group-hover:-translate-x-1 mb-8"
+                  className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 mb-8"
               >
-                <ArrowLeft
-                    size={14}
-                    className="group-hover:-translate-x-0.5 transition-transform duration-200"
-                />
+                <ArrowLeft size={16} />
                 Back to Portfolio
-              </Link>
+              </Button>
             </div>
 
             <div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+              <h1 className="text-6xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
                 Project Index
               </h1>
-              <div className="section-marker mt-3">
-                <div></div>
-                <div></div>
-              </div>
+              <div className="mt-6 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
             </div>
 
-            <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed">
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl leading-relaxed">
               Complete catalog of work and research. Each entry represents
-              something that demanded existence—
-              <br className="hidden sm:block" />
-              from midnight curiosities to systematic investigations.
+              something that demanded existence—from midnight curiosities to systematic investigations.
             </p>
           </header>
 
           {/* Work Projects */}
-          <section className="space-y-12">
+          <section className="space-y-16">
             <div>
-              <h2 className="text-lg sm:text-xl font-semibold uppercase tracking-wide">
+              <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
                 Development Work
               </h2>
-              <div className="section-marker">
-                <div></div>
-                <div></div>
-              </div>
+              <div className="mt-4 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
             </div>
 
-            <div className="space-y-16">
+            <div className="space-y-24">
               {workProjects.map((project, i) => (
-                  <article key={project.slug} className="group/project">
-                    <div className="flex items-start justify-between gap-6">
+                  <div key={project.slug}>
+                    <div className="flex items-start justify-between gap-8">
                       <div className="flex-1">
                         <ProjectCard
                             title={project.title}
@@ -92,50 +81,43 @@ export default function ProjectIndex() {
                         />
                       </div>
 
-                      <div className="hidden sm:flex flex-col items-end gap-2 text-xs text-neutral-500 font-mono min-w-[120px]">
+                      <div className="hidden sm:flex flex-col items-end gap-3 text-sm min-w-[140px]">
                         <div className="flex items-center gap-2">
-                          <Clock size={10} />
-                          <span
-                              className={`uppercase tracking-wide ${getStatusColor(
-                                  project.status
-                              )}`}
-                          >
+                          <Clock size={12} />
+                          <span className={`font-medium ${getStatusColor(project.status)}`}>
                         {project.status}
                       </span>
                         </div>
-                        <span className="uppercase tracking-wider opacity-60">
+                        <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
                       {project.category}
                     </span>
                       </div>
                     </div>
 
                     {i < workProjects.length - 1 && (
-                        <div className="mt-12 text-center font-mono text-[11px] tracking-widest text-[var(--accent)]/60 opacity-40">
-                          — — —
+                        <div className="mt-20 flex justify-center">
+                          <div className="w-12 h-px bg-neutral-300 dark:bg-neutral-700"></div>
                         </div>
                     )}
-                  </article>
+                  </div>
               ))}
             </div>
           </section>
 
           {/* Research Projects */}
           {researchProjects.length > 0 && (
-              <section className="space-y-12">
+              <section className="space-y-16">
                 <div>
-                  <h2 className="text-lg sm:text-xl font-semibold uppercase tracking-wide">
+                  <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
                     Research Implementations
                   </h2>
-                  <div className="section-marker">
-                    <div></div>
-                    <div></div>
-                  </div>
+                  <div className="mt-4 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
                 </div>
 
-                <div className="space-y-16">
+                <div className="space-y-24">
                   {researchProjects.map((project, i) => (
-                      <article key={project.slug} className="group/project">
-                        <div className="flex items-start justify-between gap-6">
+                      <div key={project.slug}>
+                        <div className="flex items-start justify-between gap-8">
                           <div className="flex-1">
                             <ProjectCard
                                 title={project.title}
@@ -148,41 +130,36 @@ export default function ProjectIndex() {
                             />
                           </div>
 
-                          <div className="hidden sm:flex flex-col items-end gap-2 text-xs text-neutral-500 font-mono min-w-[120px]">
+                          <div className="hidden sm:flex flex-col items-end gap-3 text-sm min-w-[140px]">
                             <div className="flex items-center gap-2">
-                              <Clock size={10} />
-                              <span
-                                  className={`uppercase tracking-wide ${getStatusColor(
-                                      project.status
-                                  )}`}
-                              >
+                              <Clock size={12} />
+                              <span className={`font-medium ${getStatusColor(project.status)}`}>
                           {project.status}
                         </span>
                             </div>
-                            <span className="uppercase tracking-wider opacity-60">
+                            <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
                         {project.category}
                       </span>
                           </div>
                         </div>
 
                         {i < researchProjects.length - 1 && (
-                            <div className="mt-12 text-center font-mono text-[11px] tracking-widest text-[var(--accent)]/60 opacity-40">
-                              — — —
+                            <div className="mt-20 flex justify-center">
+                              <div className="w-12 h-px bg-neutral-300 dark:bg-neutral-700"></div>
                             </div>
                         )}
-                      </article>
+                      </div>
                   ))}
                 </div>
               </section>
           )}
 
           {/* Archive Note */}
-          <section className="pt-12 border-t border-neutral-200 dark:border-neutral-800">
-            <div className="text-center space-y-4">
-              <p className="text-sm text-neutral-500 max-w-lg mx-auto leading-relaxed">
+          <section className="pt-16 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="text-center space-y-6">
+              <p className="text-base text-neutral-500 max-w-2xl mx-auto leading-relaxed">
                 This index contains all documented projects. Some are active,
-                others archived—each represents a specific investigation or
-                systematic exploration.
+                others archived.
               </p>
             </div>
           </section>

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import Button from "@/components/Button";
 import { ExternalLink, ArrowLeft, Clock, GitBranch } from "lucide-react";
 import { getProjectBySlug } from "@/lib/projects";
 import Footer from "@/components/Footer";
@@ -41,261 +41,235 @@ export default function ProjectPage({ params }: Props) {
 
   const isResearch = project.category === "research";
   const statusColor =
-    project.status === "In Active Development"
-      ? "text-green-600 dark:text-green-400"
-      : project.status === "Research Implementation" ||
+      project.status === "In Active Development"
+          ? "text-green-600 dark:text-green-400"
+          : project.status === "Research Implementation" ||
           project.status === "Research Prototype"
-        ? "text-blue-600 dark:text-blue-400"
-        : "text-yellow-600 dark:text-yellow-400";
+              ? "text-blue-600 dark:text-blue-400"
+              : "text-yellow-600 dark:text-yellow-400";
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
-      <div className="max-w-3xl mx-auto px-5 py-16 space-y-20">
-        {/* Back */}
-        <div className="group">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-[var(--accent)] uppercase tracking-wide transition-all duration-200 group-hover:-translate-x-1"
-          >
-            <ArrowLeft
-              size={14}
-              className="group-hover:-translate-x-0.5 transition-transform duration-200"
-            />
-            Back to Portfolio
-          </Link>
-        </div>
+      <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
+        <div className="max-w-3xl mx-auto px-8 py-32 space-y-24">
+          {/* Back Navigation */}
+          <div>
+            <Button
+                href="/"
+                className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+            >
+              <ArrowLeft size={16} />
+              Back to Portfolio
+            </Button>
+          </div>
 
-        {/* Header */}
-        <header className="space-y-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug tracking-tight">
-                {project.displayName}
-              </h1>
-              {isResearch && (
-                <span className="text-xs px-2 py-1 rounded font-mono uppercase tracking-wider bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+          {/* Header */}
+          <header className="space-y-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <h1 className="text-5xl font-bold leading-tight tracking-tight text-neutral-900 dark:text-neutral-100">
+                  {project.displayName}
+                </h1>
+                {isResearch && (
+                    <span className="text-xs px-3 py-1.5 rounded-full font-mono uppercase tracking-wider bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
                   Research
                 </span>
+                )}
+              </div>
+
+              {project.subtitle && (
+                  <p className="text-sm font-mono text-neutral-500 tracking-wide">
+                    {project.subtitle}
+                  </p>
               )}
             </div>
 
-            <p className="text-[11px] uppercase tracking-widest text-neutral-500 font-mono flex items-center gap-2">
-              <span className="w-2 h-px bg-[var(--accent)]"></span>
-              {project.subtitle}
+            {/* Main description */}
+            <p className="text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              {project.description}
             </p>
-          </div>
 
-          {/* Main description */}
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-prose">
-            {project.description}
-          </p>
+            {/* ELI5 summary */}
+            {project.eli5 && (
+                <div className="border-l-4 border-neutral-300 dark:border-neutral-700 pl-6">
+                  <p className="text-base text-neutral-600 dark:text-neutral-400 italic leading-relaxed">
+                    {project.eli5}
+                  </p>
+                </div>
+            )}
 
-          {/* ELI5 summary */}
-          {project.eli5 && (
-            <div className="mt-3 border-l-2 border-[var(--accent)]/40 pl-3">
-              <p className="text-sm text-neutral-700 dark:text-neutral-300 italic leading-relaxed">
-                {project.eli5}
-              </p>
-            </div>
-          )}
-
-          {/* Status + Role + Links */}
-          <div className="flex flex-wrap gap-6 text-sm text-neutral-500 items-center pt-2 border-t border-dotted border-neutral-300 dark:border-neutral-700">
-            <div className="flex items-center gap-2">
-              <Clock size={12} />
-              <span className={`uppercase tracking-wide ${statusColor}`}>
+            {/* Status + Role + Links */}
+            <div className="flex flex-wrap gap-8 text-sm items-center pt-6 border-t border-neutral-200 dark:border-neutral-800">
+              <div className="flex items-center gap-2">
+                <Clock size={14} />
+                <span className={`font-medium ${statusColor}`}>
                 {project.status}
               </span>
-            </div>
+              </div>
 
-            {project.role && (
-              <span className="uppercase tracking-wide font-mono text-neutral-700 dark:text-neutral-300">
+              {project.role && (
+                  <span className="font-mono text-neutral-600 dark:text-neutral-400">
                 {project.role}
               </span>
-            )}
+              )}
 
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-widest hover:text-[var(--accent)] transition-colors group"
-              >
-                <GitBranch size={12} />
-                Source Code
-                <ExternalLink
-                  size={12}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                />
-              </a>
-            )}
+              <div className="flex items-center gap-6">
+                {project.github && (
+                    <Button
+                        href={project.github}
+                        external
+                        className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
+                    >
+                      <GitBranch size={14} />
+                      Source Code
+                      <ExternalLink size={12} />
+                    </Button>
+                )}
 
-            {project.externalLink && (
-              <a
-                href={project.externalLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-widest hover:text-[var(--accent)] transition-colors group"
-              >
-                View
-                <ExternalLink
-                  size={12}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                />
-              </a>
-            )}
-          </div>
-        </header>
-
-        {/* Implementation Details */}
-        <section className="space-y-6">
-          <div>
-            <h2 className="text-sm sm:text-base font-semibold uppercase tracking-wide">
-              {isResearch
-                ? "Research Contributions"
-                : "Implementation Features"}
-            </h2>
-            <div className="section-marker">
-              <div></div>
-              <div></div>
+                {project.externalLink && (
+                    <Button
+                        href={project.externalLink}
+                        external
+                        className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
+                    >
+                      View Live
+                      <ExternalLink size={12} />
+                    </Button>
+                )}
+              </div>
             </div>
-          </div>
+          </header>
 
-          <ul className="space-y-4 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
-            {project.features.map((f, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="mt-0.5 text-[11px] text-[var(--accent)]/60 font-mono w-4 shrink-0">
+          {/* Implementation Details */}
+          <section className="space-y-12">
+            <div>
+              <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+                {isResearch ? "Research Contributions" : "Implementation Features"}
+              </h2>
+              <div className="mt-4 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
+            </div>
+
+            <ul className="space-y-6 text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
+              {project.features.map((f, i) => (
+                  <li key={i} className="flex items-start gap-4">
+                <span className="mt-1 text-sm text-neutral-400 font-mono w-8 shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+                    <span>{f}</span>
+                  </li>
+              ))}
+            </ul>
+          </section>
 
-        {/* System Components + Tech */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-sm sm:text-base font-semibold uppercase tracking-wide">
-                {isResearch ? "Model Components" : "System Modules"}
-              </h3>
-              <div className="section-marker">
-                <div></div>
-                <div></div>
+          {/* System Components + Tech */}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+                  {isResearch ? "Model Components" : "System Modules"}
+                </h3>
+                <div className="mt-3 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
+              </div>
+
+              <div className="space-y-4">
+                {project.modules.map((m, i) => (
+                    <div key={i} className="text-base font-medium text-neutral-700 dark:text-neutral-300">
+                      {m}
+                    </div>
+                ))}
               </div>
             </div>
 
-            <div className="space-y-3">
-              {project.modules.map((m, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="block font-medium text-[0.95em] uppercase tracking-wide">
-                    {m}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+                  Technology Stack
+                </h3>
+                <div className="mt-3 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex flex-wrap gap-3">
+                  {project.stack.map((s, i) => (
+                      <span
+                          key={i}
+                          className="px-3 py-2 text-sm font-mono text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-md"
+                      >
+                    {s}
                   </span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-sm sm:text-base font-semibold uppercase tracking-wide">
-                Technology Stack
-              </h3>
-              <div className="section-marker">
-                <div></div>
-                <div></div>
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800">
+                  <div className="text-sm text-neutral-500">
+                    <span className="font-medium">Primary Focus:</span> {project.tech}
+                  </div>
+                  {project.github && (
+                      <p className="mt-2 text-xs text-neutral-500">
+                        Full implementation details available in the repository.
+                      </p>
+                  )}
+                </div>
               </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 text-sm font-mono text-neutral-700 dark:text-neutral-300">
-              {project.stack.map((s, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1.5 rounded text-[0.85em] bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/5 hover:scale-105 transition-all duration-200 cursor-default"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-
-            <div className="space-y-3 text-xs">
-              <div className="flex items-center gap-2 text-neutral-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]/60"></span>
-                <span className="uppercase tracking-wide">
-                  Primary Focus: {project.tech}
-                </span>
-              </div>
-              {project.github && (
-                <p className="text-[12px] uppercase tracking-widest text-neutral-500 opacity-75">
-                  Full implementation details available in the repository.
-                </p>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Current State / Limitations */}
-        {project.limitations && (
-          <section className="space-y-6">
-            <div>
-              <h3 className="text-sm sm:text-base font-semibold uppercase tracking-wide">
-                {isResearch ? "Implementation Notes" : "Current State"}
-              </h3>
-              <div className="section-marker">
-                <div></div>
-                <div></div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded border-l-2 border-yellow-400/40 bg-yellow-50/30 dark:bg-yellow-900/10 dark:border-yellow-500/30">
-              <p className="text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
-                {project.limitations}
-              </p>
             </div>
           </section>
-        )}
 
-        {/* Footer */}
-        <section className="pt-10 dark:border-neutral-800 text-xs text-neutral-500 flex flex-col sm:flex-row justify-between gap-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 hover:text-[var(--accent)] uppercase tracking-wide transition-all duration-200 group"
-          >
-            <ArrowLeft
-              size={14}
-              className="group-hover:-translate-x-0.5 transition-transform duration-200"
-            />
-            Back to Portfolio
-          </Link>
-          <div className="flex items-center gap-6">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="uppercase tracking-widest hover:text-[var(--accent)] transition-colors"
+          {/* Current State / Limitations */}
+          {project.limitations && (
+              <section className="space-y-8">
+                <div>
+                  <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+                    {isResearch ? "Implementation Notes" : "Current State"}
+                  </h3>
+                  <div className="mt-3 h-px bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800"></div>
+                </div>
+
+                <div className="p-6 rounded-lg border-l-4 border-yellow-400/50 bg-yellow-50/50 dark:bg-yellow-900/10 dark:border-yellow-500/30">
+                  <p className="text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
+                    {project.limitations}
+                  </p>
+                </div>
+              </section>
+          )}
+
+          {/* Footer Navigation */}
+          <section className="pt-16 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-6 text-sm text-neutral-500">
+              <Button
+                  href="/"
+                  className="inline-flex items-center gap-2 hover:text-neutral-700 dark:hover:text-neutral-300"
               >
-                View Repository
-              </a>
-            )}
-            {project.externalLink && (
-              <a
-                href={project.externalLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="uppercase tracking-widest hover:text-[var(--accent)] transition-colors"
-              >
-                View
-              </a>
-            )}
-            <span className="font-mono opacity-60">
-              © {new Date().getFullYear()}
-            </span>
-          </div>
-        </section>
-        <Footer />
-      </div>
-    </main>
+                <ArrowLeft size={16} />
+                Back to Portfolio
+              </Button>
+
+              <div className="flex items-center gap-8">
+                {project.github && (
+                    <Button
+                        href={project.github}
+                        external
+                        className="hover:text-neutral-700 dark:hover:text-neutral-300"
+                    >
+                      View Repository
+                    </Button>
+                )}
+                {project.externalLink && (
+                    <Button
+                        href={project.externalLink}
+                        external
+                        className="hover:text-neutral-700 dark:hover:text-neutral-300"
+                    >
+                      View Live
+                    </Button>
+                )}
+                <span className="text-xs font-mono opacity-60">
+                © {new Date().getFullYear()}
+              </span>
+              </div>
+            </div>
+          </section>
+
+          <Footer />
+        </div>
+      </main>
   );
 }
