@@ -1,9 +1,6 @@
 # Sefren — Portfolio
 
 A personal portfolio built with **Next.js (App Router)** and **TailwindCSS**, deployed on **Vercel**.  
-
-_Refined with AI ✦_
-
 ---
 
 ## Showcase
