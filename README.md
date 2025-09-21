@@ -1,43 +1,41 @@
 # Sefren — Portfolio
 
-Personal portfolio built with **Next.js (App Router)**, **TailwindCSS**, and deployed on **Vercel**.
+A personal portfolio built with **Next.js (App Router)** and **TailwindCSS**, deployed on **Vercel**.  
+
+_Refined with AI ✦_
 
 ---
 
-## Features
-
-* Projects (dossiers)
-* Research
-* Project detail pages
-* About
-* Contact
-* Accent markers and typography-driven design
-
----
-
-## Screenshots
+## Showcase
 
 ![Portfolio Screenshot](./screenshot.png)
 
 ---
 
-## Getting Started
+## Features
+- Project showcase with detail pages
+- Research highlights
+- About + Contact
+- Clean, typography-focused design
 
-### Install dependencies
+---
 
+## Setup
+
+Install dependencies:
 ```bash
 npm install
-```
+````
 
-### Run the dev server
+Run development server:
 
 ```bash
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
-### Build for production
+Build for production:
 
 ```bash
 npm run build
@@ -48,7 +46,7 @@ npm run start
 
 ## Deployment
 
-Deploys easily on **Vercel**:
+Deploy on **Vercel**:
 
 ```bash
 vercel --prod
@@ -61,12 +59,14 @@ vercel --prod
 * Next.js (App Router)
 * TailwindCSS
 * Lucide Icons
-* Hosted on Vercel
+* Vercel
 
 ---
 
 ## License
 
-MIT License — feel free to use/adapt with attribution.
+MIT License — free to use/adapt with attribution.
 
-[View License](./LICENSE) · [My GitHub Profile](https://github.com/sefren)
+[License](./LICENSE) · [GitHub](https://github.com/sefren)
+
+
