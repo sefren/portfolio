@@ -78,6 +78,33 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "portfolio",
+    title: "Portfolio",
+    subtitle: "Personal Portfolio and Project Index",
+    description:
+        "This portfolio is a structured catalog of projects, research, and experiments. It includes detailed project pages with descriptions, features, status, tech stack, and ELI5 explanations. Built as both a showcase and a living archive, it balances clarity with a clean design optimized for desktop and mobile.",
+    shortDescription:
+        "Personal portfolio — structured index of work, projects, and research.",
+    features: [
+      "Index of work, projects, and research with category filters",
+      "Structured project pages with descriptions, features, tech stack, and status",
+      "Dark/light mode support with consistent design system",
+      "Responsive layout optimized for desktop and mobile",
+      "Reusable UI components for clean and scalable structure",
+    ],
+    stack: ["Next.js", "TypeScript", "TailwindCSS", "Vercel"],
+    tech: "Next.js · TypeScript · Tailwind",
+    status: "active",
+    github: "https://github.com/sefren/portfolio",
+    externalLink: "/",
+    category: "projects",
+    role: "Solo — design, development, and content",
+    eli5:
+        "This is the project — the place that holds every other one;  you’re inside it already.",
+  },
+
+
+  {
     slug: "iflr-rancom-mabac",
     title: "IFLR-RANCOM & MABAC Framework",
     subtitle: "Assessment of sustainable hydrogen supply alternatives",
