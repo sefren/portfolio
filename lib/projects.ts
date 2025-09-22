@@ -18,36 +18,36 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "noir-ai",
-    title: "Noir AI",
-    subtitle: "Automated Risk Analysis System",
+    slug: "loadout",
+    title: "Loadout",
+    subtitle: "Session & Process Orchestrator",
     description:
-      "NoirAI is an automated investigation and risk analysis system for digital entities such as domains, companies, and URLs. It collects evidence from multiple sources, applies heuristic and AI-based planning, and produces explainable risk scores with full traceability. Built for extensibility and cloud deployment, NoirAI combines structured data collection, configurable analysis, and transparent reporting into a single platform.",
+      "Loadout is a lightweight desktop session orchestrator for power users and gamers. It watches for processes and runs user-defined profiles (modes) that can launch, close, suspend, mute, or otherwise configure applications and system state. Designed as a safe, auditable, and extensible engine, Loadout maps process lifecycle events to declarative action lists and provides a minimal tray UI and optional overlay.",
     shortDescription:
-      "Automated Risk Analysis System — evidence, heuristics, AI planning, explainable risk scoring.",
+      "Session and process orchestrator — declarative profiles to manage apps, audio, power, and workflows.",
     features: [
-      "Multi-source evidence collection (WHOIS, web content, news, reputation)",
-      "AI-powered heuristic analysis and planning",
-      "Explainable risk scoring (low, medium, high, critical)",
-      "Real-time execution trace with user visibility",
-      "AWS-ready architecture with scalable deployment",
-      "Exportable investigation reports and integration APIs",
+      "Process watcher: detect process start/stop and trigger profiles",
+      "Declarative profiles (JSON) with start/stop actions and bindings",
+      "Action system: launch, close, suspend, mute, set power plan, run commands",
+      "Safety policy and audit logging to avoid destructive mistakes",
+      "Tray-based UI for quick mode start/stop and a simple profile editor",
+      "Extensible ActionFactory to add new actions and templates",
     ],
     stack: [
-      "Python",
-      "FastAPI",
-      "Pydantic",
-      "Next.js",
-      "TypeScript",
-      "Tailwind",
-      "AWS (Lambda, ECS, S3, API Gateway)",
+      "C++17",
+      "CMake",
+      "ImGui (UI)",
+      "Win32 / WASAPI",
+      "nlohmann::json",
+      "spdlog",
     ],
-    tech: "Python · FastAPI · AWS · Next.js",
+    tech: "C++17 · ImGui · Win32 · CMake",
     status: "active",
-    github: "https://github.com/sefren/noir-ai",
+    github: "https://github.com/sefren/loadout",
     category: "projects",
-    role: "Solo — designed and built the architecture, planner/orchestrator, and API layer",
-    eli5: "NoirAI is an automated investigator: give it a domain or company and it gathers evidence (WHOIS, news, web content), runs rules and AI to weigh signals, and returns a clear risk score plus a readable report that shows the why.",
+    role: "Solo — designed and built the entire project: architecture, coding, and implementation.",
+    eli5:
+      "Loadout is a smart remote control for your PC: pick a mode (dev, streamer, game), and it opens the right apps, mutes or suspends background stuff, and applies system tweaks so you don't have to fiddle with Task Manager.",
   },
 
   {
